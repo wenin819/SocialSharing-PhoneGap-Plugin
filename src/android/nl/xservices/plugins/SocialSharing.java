@@ -313,6 +313,13 @@ public class SocialSharing extends CordovaPlugin {
             packageName = items[0];
             passedActivityName = items[1];
           }
+          if("com.tencent.mm".equals(packageName)) {  // 微信分享
+            if(null != message) {
+              if ("com.tencent.mm.ui.tools.ShareToTimeLineUI".equals(passedActivityName)) {
+                sendIntent.putExtra("Kdescription", message);
+              }
+            }
+          }
           final ActivityInfo activity = getActivity(callbackContext, sendIntent, packageName, appName);
           if (activity != null) {
             if (peek) {
